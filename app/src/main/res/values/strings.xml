@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Project2</string>
+    <string name="login_welcome">Welcome to the Dive Log.\nPlease Sign in.</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login!</string>
 </resources>
