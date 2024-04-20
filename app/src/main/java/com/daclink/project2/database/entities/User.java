@@ -1,11 +1,13 @@
 package com.daclink.project2.database.entities;
 
-import com.daclink.project2.database.Entity;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+import com.daclink.project2.database.GymLogDatabase;
 
 import java.util.Objects;
 
-@Entity(tablename = GymLogDatabase.USER_Table)
-
+@Entity(tableName = GymLogDatabase.USER_TABLE)
 public class User {
 
     @PrimaryKey(autoGenerate = true)
