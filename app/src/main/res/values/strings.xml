@@ -4,4 +4,15 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="login">Login!</string>
+    <string name="create_an_account">Create an Account!</string>
+    <string name="create_account">Create Account</string>
+    <string name="create_accountbutton">Create Account</string>
+    <string name="createAccountText">Create an Account</string>
+    <string name="exercise">Exercise</string>
+    <string name="enter_an_exercise">Enter an Exercise</string>
+    <string name="weight">Weight</string>
+    <string name="enter_a_weight">Enter a Weight</string>
+    <string name="enter_reps">Enter Reps</string>
+    <string name="reps">Reps</string>
+    <string name="log">Log!</string>
 </resources>
