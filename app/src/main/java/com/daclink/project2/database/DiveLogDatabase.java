@@ -59,6 +59,7 @@ public abstract class DiveLogDatabase extends RoomDatabase {
                 UserDAO dao = INSTANCE.userDAO();
                 dao.deleteAll();
                 User admin = new User("admin1", "admin1");
+                admin.setAdmin(true);
                 dao.insert(admin);
 
                 User testUser1 = new User("testuser1", "testuser1");
