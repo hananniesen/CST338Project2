@@ -7,12 +7,11 @@ import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-import androidx.room.TypeConverter;
 import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.daclink.project2.MainActivity;
-import com.daclink.project2.database.entities.GymLog;
+import com.daclink.project2.database.entities.DiveLog;
 import com.daclink.project2.database.entities.User;
 import com.daclink.project2.database.typeConverters.LocalDateTypeConverter;
 
@@ -21,25 +20,25 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @TypeConverters(LocalDateTypeConverter.class)
-@Database(entities = {GymLog.class, User.class}, version = 1, exportSchema = false)
-public abstract class GymLogDatabase extends RoomDatabase {
+@Database(entities = {DiveLog.class, User.class}, version = 1, exportSchema = false)
+public abstract class DiveLogDatabase extends RoomDatabase {
 
     public static final String USER_TABLE = "usertable";
-    private static final String DATABASE_NAME = "GymLogDatabase";
-    public static final String GYM_LOG_TABLE = "gymLogTable";
+    private static final String DATABASE_NAME = "DiveLogDatabase";
+    public static final String DIVE_LOG_TABLE = "diveLogTable";
 
-    private static volatile GymLogDatabase INSTANCE;
+    private static volatile DiveLogDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
 
     static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
-    static GymLogDatabase getDatabase(final Context context) {
+    static DiveLogDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
-            synchronized (GymLogDatabase.class) {
+            synchronized (DiveLogDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(
                             context.getApplicationContext(),
-                            GymLogDatabase.class,
+                            DiveLogDatabase.class,
                                     DATABASE_NAME
                             )
                             .fallbackToDestructiveMigration()
@@ -68,7 +67,7 @@ public abstract class GymLogDatabase extends RoomDatabase {
         }
     };
 
-    public abstract GymLogDAO gymLogDAO();
+    public abstract DiveLogDAO diveLogDAO();
 
     public abstract UserDAO userDAO();
 }

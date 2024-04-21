@@ -1,21 +1,21 @@
 <resources>
     <string name="app_name">Project2</string>
-    <string name="login_welcome">Welcome to the Dive Log.\nPlease Sign in.</string>
+    <string name="login_welcome">Welcome to the Dive Log.\nPlease Sign in</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="login">Login!</string>
     <string name="create_an_account">Create an Account!</string>
     <string name="create_account">Create Account</string>
-    <string name="create_accountbutton">Create Account</string>
+    <string name="create_account_button">Create Account</string>
     <string name="createAccountText">Create an Account</string>
-    <string name="exercise">Exercise</string>
-    <string name="enter_an_exercise">Enter an Exercise</string>
-    <string name="weight">Weight</string>
-    <string name="enter_a_weight">Enter a Weight</string>
-    <string name="enter_reps">Enter Reps</string>
-    <string name="reps">Reps</string>
+    <string name="exercise">DiveType</string>
+    <string name="enter_an_exercise">Enter a Type of Dive</string>
+    <string name="weight">Max-Depth</string>
+    <string name="enter_a_weight">Enter Max Depth of the Dive</string>
+    <string name="enter_reps">Enter Time Spent at Depth</string>
+    <string name="reps">Time</string>
     <string name="log">Log!</string>
-    <string name="nothing_to_show_time_to_hit_the_gym">Nothing to show, time to hit the gym!</string>
-    <string name="preference_file_key">daclinkPreferenceFileNameGymlog</string>
-    <string name="preference_userId_key">daclinkPreferenceUserIdKeyGymLog</string>
+    <string name="nothing_to_show">Nothing to show, time to go diving!</string>
+    <string name="preference_file_key">daclinkPreferenceFileNameDivelog</string>
+    <string name="preference_userId_key">daclinkPreferenceUserIdKeyDiveLog</string>
 </resources>
