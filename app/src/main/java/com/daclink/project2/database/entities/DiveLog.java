@@ -4,13 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.daclink.project2.database.GymLogDatabase;
+import com.daclink.project2.database.DiveLogDatabase;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-@Entity(tableName = GymLogDatabase.GYM_LOG_TABLE)
-public class GymLog {
+@Entity(tableName = DiveLogDatabase.DIVE_LOG_TABLE)
+public class DiveLog {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String exercise;
@@ -19,8 +19,14 @@ public class GymLog {
     private LocalDateTime date;
     private int userId;
 
+//    Dive log data -> TODO: Replace values
+//    private String typeOfDive;
+//    private LocalDateTime date;
+//    private double maxDepth;
+//    private String additionalCom;
 
-    public GymLog(String exercise, double weight, int reps, int userId) {
+
+    public DiveLog(String exercise, double weight, int reps, int userId) {
         this.exercise = exercise;
         this.weight = weight;
         this.reps = reps;
@@ -42,8 +48,8 @@ public class GymLog {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        GymLog gymLog = (GymLog) o;
-        return id == gymLog.id && Double.compare(weight, gymLog.weight) == 0 && reps == gymLog.reps && userId == gymLog.userId && Objects.equals(exercise, gymLog.exercise) && Objects.equals(date, gymLog.date);
+        DiveLog diveLog = (DiveLog) o;
+        return id == diveLog.id && Double.compare(weight, diveLog.weight) == 0 && reps == diveLog.reps && userId == diveLog.userId && Objects.equals(exercise, diveLog.exercise) && Objects.equals(date, diveLog.date);
     }
 
     @Override

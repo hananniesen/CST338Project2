@@ -19,15 +19,15 @@ public interface UserDAO {
     @Delete
     void delete(User user);
 
-    @Query("SELECT * FROM " + GymLogDatabase.USER_TABLE + " ORDER BY username")
+    @Query("SELECT * FROM " + DiveLogDatabase.USER_TABLE + " ORDER BY username")
     LiveData<List<User>> getAllUsers();
 
-    @Query("DELETE from " + GymLogDatabase.USER_TABLE)
+    @Query("DELETE from " + DiveLogDatabase.USER_TABLE)
     void deleteAll();
 
-    @Query("SELECT * from " + GymLogDatabase.USER_TABLE + " WHERE username == :username" )
+    @Query("SELECT * from " + DiveLogDatabase.USER_TABLE + " WHERE username == :username" )
     LiveData<User> getUserByUserName(String username);
 
-    @Query("SELECT * from " + GymLogDatabase.USER_TABLE + " WHERE id == :userId" )
+    @Query("SELECT * from " + DiveLogDatabase.USER_TABLE + " WHERE id == :userId" )
     LiveData<User> getUserByUserId(int userId);
 }

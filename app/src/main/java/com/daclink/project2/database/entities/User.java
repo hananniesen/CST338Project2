@@ -3,11 +3,11 @@ package com.daclink.project2.database.entities;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.daclink.project2.database.GymLogDatabase;
+import com.daclink.project2.database.DiveLogDatabase;
 
 import java.util.Objects;
 
-@Entity(tableName = GymLogDatabase.USER_TABLE)
+@Entity(tableName = DiveLogDatabase.USER_TABLE)
 public class User {
 
     @PrimaryKey(autoGenerate = true)

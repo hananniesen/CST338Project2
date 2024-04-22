@@ -16,8 +16,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import com.daclink.project2.database.GymLogRepository;
-import com.daclink.project2.database.entities.GymLog;
+import com.daclink.project2.database.DiveLogRepository;
+import com.daclink.project2.database.entities.DiveLog;
 import com.daclink.project2.database.entities.User;
 import com.daclink.project2.databinding.ActivityMainBinding;
 
@@ -28,12 +28,11 @@ public class MainActivity extends AppCompatActivity {
     private static final String MAIN_ACTIVITY_USER_ID = "com.daclink.project2.MAIN_ACTIVITY_USER_ID";
     static final String SHARED_PREFERENCE_USERID_KEY = "com.daclink.project2.SHARED_PREFERENCE_USERID_KEY";
     static final String SAVED_INSTANCE_STATE_USERID_KEY = "com.daclink.project2.SAVED_INSTANCE_STATE_USERID_KEY";
-    static final String SHARED_PREFERENCE_USERID_VALUE = "com.daclink.project2.SHARED_PREFERENCE_USERID_VALUE";
     private static final int LOGGED_OUT = -1;
     private ActivityMainBinding binding;
-    private GymLogRepository repository;
+    private DiveLogRepository repository;
 
-    public static final String TAG = "DAC_GYMLOG";
+    public static final String TAG = "DAC_DIVELOG";
 
     String mExercise = "";
     double mWeight = 0.0;
@@ -48,13 +47,16 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        repository = GymLogRepository.getRepository(getApplication());
+        repository = DiveLogRepository.getRepository(getApplication());
         loginUser(savedInstanceState);
 
+        // User is not logged in at this point, go to login screen
         if (loggedInUserId == -1) {
             Intent intent = LoginActivity.loginIntentFactory(getApplicationContext());
             startActivity(intent);
         }
+
+        updateSharedPreference();
 
         binding.logDisplayTextView.setMovementMethod(new ScrollingMovementMethod());
         updateDisplay();
@@ -63,19 +65,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 getInformationFromDisplay();
-                insertGymLogRecord();
+                insertDiveLogRecord();
                 updateDisplay();
             }
         });
     }
 
     private void loginUser(Bundle savedInstanceState) {
-        // check shared preference for logged in user
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(SHARED_PREFERENCE_USERID_KEY,
+        // check shared preference for logged in user read from the file
+        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.preference_file_key),
                 Context.MODE_PRIVATE);
-        if (sharedPreferences.contains(SHARED_PREFERENCE_USERID_KEY)) {
-            loggedInUserId = sharedPreferences.getInt(SHARED_PREFERENCE_USERID_VALUE, LOGGED_OUT);
-        }
+
+        loggedInUserId = sharedPreferences.getInt(getString(R.string.preference_userId_key), LOGGED_OUT);
+
         if (loggedInUserId == LOGGED_OUT & savedInstanceState != null && savedInstanceState.containsKey(SAVED_INSTANCE_STATE_USERID_KEY)) {
             loggedInUserId = savedInstanceState.getInt(SAVED_INSTANCE_STATE_USERID_KEY, LOGGED_OUT);
         }
@@ -90,10 +92,15 @@ public class MainActivity extends AppCompatActivity {
             this.user = user;
             if (this.user != null) {
                 invalidateOptionsMenu();
-            } else {
-                logout();
             }
         });
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(SAVED_INSTANCE_STATE_USERID_KEY, loggedInUserId);
+        updateSharedPreference();
     }
 
     @Override
@@ -145,13 +152,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void logout() {
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(SHARED_PREFERENCE_USERID_KEY, Context.MODE_PRIVATE);
-        SharedPreferences.Editor sharedPrefEditor = sharedPreferences.edit();
-        sharedPrefEditor.putInt(SHARED_PREFERENCE_USERID_KEY, LOGGED_OUT);
-        sharedPrefEditor.apply();
 
+        loggedInUserId = LOGGED_OUT;
+        updateSharedPreference();
         getIntent().putExtra(MAIN_ACTIVITY_USER_ID, LOGGED_OUT);
+
         startActivity(LoginActivity.loginIntentFactory(getApplicationContext()));
+    }
+
+    private void updateSharedPreference() {
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.preference_file_key),
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor sharedPrefEditor = sharedPreferences.edit();
+        sharedPrefEditor.putInt(getString(R.string.preference_userId_key), loggedInUserId);
+        sharedPrefEditor.apply();
     }
 
     static Intent mainActivityIntentFactory(Context context, int userId) {
@@ -160,21 +174,21 @@ public class MainActivity extends AppCompatActivity {
         return intent;
     }
 
-    private void insertGymLogRecord() {
+    private void insertDiveLogRecord() {
         if (mExercise.isEmpty()) {
             return;
         }
-        GymLog log = new GymLog(mExercise, mWeight, mReps, loggedInUserId);
-        repository.insertGymLog(log);
+        DiveLog log = new DiveLog(mExercise, mWeight, mReps, loggedInUserId);
+        repository.insertDiveLog(log);
     }
 
     private void updateDisplay() {
-        ArrayList<GymLog> allLogs = repository.getAllLogs();
+        ArrayList<DiveLog> allLogs = repository.getAllLogsByUserId(loggedInUserId);
         if (allLogs.isEmpty()) {
-            binding.logDisplayTextView.setText(R.string.nothing_to_show_time_to_hit_the_gym);
+            binding.logDisplayTextView.setText(R.string.nothing_to_show);
         }
         StringBuilder sb = new StringBuilder();
-        for (GymLog log : allLogs) {
+        for (DiveLog log : allLogs) {
             sb.append(log);
         }
         binding.logDisplayTextView.setText(sb.toString());
