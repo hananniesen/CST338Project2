@@ -1,21 +1,23 @@
 <resources>
     <string name="app_name">Project2</string>
-    <string name="login_welcome">Welcome to the Dive Log.\nPlease Sign in</string>
+    <string name="login_welcome">Please Sign In</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="login">Login!</string>
-    <string name="create_an_account">Create an Account!</string>
-    <string name="create_account">Create Account</string>
+    <string name="create_an_account">Sign Up</string>
+    <string name="sign_up">Sign Up</string>
     <string name="create_account_button">Create Account</string>
-    <string name="createAccountText">Create an Account</string>
-    <string name="exercise">DiveType</string>
-    <string name="enter_an_exercise">Enter a Type of Dive</string>
-    <string name="weight">Max-Depth</string>
-    <string name="enter_a_weight">Enter Max Depth of the Dive</string>
-    <string name="enter_reps">Enter Time Spent at Depth</string>
-    <string name="reps">Time</string>
+    <string name="createAccountText">Please Create an Account</string>
+    <string name="divetype">DiveType</string>
+    <string name="enter_a_type_of_dive">Enter a Type of Dive</string>
+    <string name="maxdepth">Max-Depth</string>
+    <string name="enter_a_max_depth_of_dive">Enter Max Depth of the Dive</string>
+    <string name="enter_time_spent_at_depth">Enter Time Spent at Depth</string>
+    <string name="time">Time</string>
     <string name="log">Log!</string>
     <string name="nothing_to_show">Nothing to show, time to go diving!</string>
     <string name="preference_file_key">daclinkPreferenceFileNameDivelog</string>
     <string name="preference_userId_key">daclinkPreferenceUserIdKeyDiveLog</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="repeat_password">Repeat Password</string>
 </resources>

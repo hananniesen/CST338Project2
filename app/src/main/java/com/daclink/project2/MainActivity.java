@@ -132,16 +132,16 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
         final AlertDialog alertDialog = alertBuilder.create();
 
-        alertBuilder.setMessage("Logout!");
+        alertBuilder.setMessage("Logout?");
 
-        alertBuilder.setPositiveButton("Logout?", new DialogInterface.OnClickListener() {
+        alertBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 logout();
             }
         });
 
-        alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        alertBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 alertDialog.dismiss();
