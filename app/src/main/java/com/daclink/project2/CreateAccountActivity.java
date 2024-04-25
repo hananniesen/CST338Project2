@@ -1,5 +1,6 @@
 package com.daclink.project2;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -57,12 +58,12 @@ public class CreateAccountActivity extends AppCompatActivity {
 
 
         // TODO: Finish Create Account parameters (Still need to check for password meeting requirements)
-        // Error of not creating an account and user.getId() error of an id not existing to start MainActivity
+        // It works but instead of going directly into the landing page after signing up, you have to log in again
 
 
         userObserver.observe(this, user -> {
             if (user != null) {
-                toastMaker(String.format("%s already exists. Choose a new username.", username));
+                toastMaker(String.format("%s already in use.", username));
                 binding.userNameCreateEditText.setSelection(0);
             } else {
                 String password = binding.passwordCreateEditText.getText().toString();
@@ -71,10 +72,11 @@ public class CreateAccountActivity extends AppCompatActivity {
                     toastMaker("Passwords do not match");
                     binding.passwordCreateEditText.setSelection(0);
                     binding.repeatPasswordCreateEditText.setSelection(0);
-                } else if (password doesn't meet requirements) {
+//                } else if (password doesn't meet requirements) {
 
-                } else if (password.equals(repeatPassword) && password meets requirements) {
-                    DiveLogDatabase.createUser(username, password);
+                } else if (password.equals(repeatPassword)) {
+                    User newUser = new User(username, password);
+                    repository.insertUser(newUser);
                     startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), user.getId()));
                 } else {
                     toastMaker("Invalid passwords");

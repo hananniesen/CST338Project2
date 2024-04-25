@@ -68,12 +68,6 @@ public abstract class DiveLogDatabase extends RoomDatabase {
         }
     };
 
-    public static void createUser(String username, String password) {
-        UserDAO dao = INSTANCE.userDAO();
-        User newUser = new User(username, password);
-        dao.insert(newUser);
-    }
-
     public abstract DiveLogDAO diveLogDAO();
 
     public abstract UserDAO userDAO();
