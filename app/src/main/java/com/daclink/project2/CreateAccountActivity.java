@@ -74,6 +74,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                     binding.repeatPasswordCreateEditText.setSelection(0);
 //                } else if (password doesn't meet requirements) {
 
+                    // And password meets requirements
                 } else if (password.equals(repeatPassword)) {
                     User newUser = new User(username, password);
                     repository.insertUser(newUser);

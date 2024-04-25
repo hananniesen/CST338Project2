@@ -63,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
                     binding.passwordLoginEditText.setSelection(0);
                 }
             } else {
-                toastMaker(String.format("%s is not a valid username.", username));
+                toastMaker("Invalid username.");
                 binding.userNameLoginEditText.setSelection(0);
             }
         });
