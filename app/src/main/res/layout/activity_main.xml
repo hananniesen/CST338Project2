@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/exerciseLabelTextView"
+        android:id="@+id/diveTypeLabelTextView"
         android:layout_width="100dp"
         android:layout_height="36dp"
         android:layout_marginStart="16dp"
@@ -29,18 +29,18 @@
         app:layout_constraintTop_toBottomOf="@+id/logDisplayTextView" />
 
     <EditText
-        android:id="@+id/exerciseInputEditText"
+        android:id="@+id/diveTypeInputEditText"
         android:layout_width="273dp"
         android:layout_height="39dp"
         android:layout_marginStart="8dp"
         android:hint="@string/enter_a_type_of_dive"
         android:inputType="textAutoComplete"
         android:padding="8dp"
-        app:layout_constraintBaseline_toBaselineOf="@id/exerciseLabelTextView"
-        app:layout_constraintStart_toEndOf="@id/exerciseLabelTextView" />
+        app:layout_constraintBaseline_toBaselineOf="@id/diveTypeLabelTextView"
+        app:layout_constraintStart_toEndOf="@id/diveTypeLabelTextView" />
 
     <TextView
-        android:id="@+id/weightLabelTextView"
+        android:id="@+id/maxDepthLabelTextView"
         android:layout_width="100dp"
         android:layout_height="36dp"
         android:layout_marginStart="16dip"
@@ -48,21 +48,21 @@
         android:text="@string/maxdepth"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/exerciseLabelTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/diveTypeLabelTextView" />
 
     <EditText
-        android:id="@+id/weightInputEditText"
+        android:id="@+id/maxDepthInputEditText"
         android:layout_width="273dp"
         android:layout_height="39dp"
         android:layout_marginStart="8dp"
         android:hint="@string/enter_a_max_depth_of_dive"
         android:inputType="number|numberDecimal"
         android:padding="8dp"
-        app:layout_constraintBaseline_toBaselineOf="@id/weightLabelTextView"
-        app:layout_constraintStart_toEndOf="@id/weightLabelTextView" />
+        app:layout_constraintBaseline_toBaselineOf="@id/maxDepthLabelTextView"
+        app:layout_constraintStart_toEndOf="@id/maxDepthLabelTextView" />
 
     <TextView
-        android:id="@+id/repLabelTextView"
+        android:id="@+id/timeLabelTextView"
         android:layout_width="100dp"
         android:layout_height="36dp"
         android:layout_marginStart="16dip"
@@ -70,18 +70,18 @@
         android:text="@string/time"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/weightLabelTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/maxDepthLabelTextView" />
 
     <EditText
-        android:id="@+id/repInputEditText"
+        android:id="@+id/timeInputEditText"
         android:layout_width="273dp"
         android:layout_height="39dp"
         android:layout_marginStart="8dp"
         android:hint="@string/enter_time_spent_at_depth"
         android:inputType="number"
         android:padding="8dp"
-        app:layout_constraintBaseline_toBaselineOf="@id/repLabelTextView"
-        app:layout_constraintStart_toEndOf="@id/repLabelTextView" />
+        app:layout_constraintBaseline_toBaselineOf="@id/timeLabelTextView"
+        app:layout_constraintStart_toEndOf="@id/timeLabelTextView" />
 
     <Button
         android:layout_width="390dp"
@@ -91,7 +91,7 @@
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/repInputEditText"
+        app:layout_constraintTop_toBottomOf="@id/timeInputEditText"
         android:id="@+id/logButton"
         />
 
