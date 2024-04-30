@@ -34,9 +34,10 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = "DAC_DIVELOG";
 
+    // values will be changed in the future for the sake of matching a dive log
     String mExercise = "";
     double mWeight = 0.0;
-    int mReps = 0;
+    String mReps = "";
 
     //    Dive log data -> TODO: Replace values
     //    private String typeOfDive;
@@ -201,18 +202,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getInformationFromDisplay() {
-        mExercise = binding.exerciseInputEditText.getText().toString();
+        mExercise = binding.diveTypeInputEditText.getText().toString();
         try {
-            mWeight = Double.parseDouble(binding.weightInputEditText.getText().toString());
+            mWeight = Double.parseDouble(binding.maxDepthInputEditText.getText().toString());
         } catch (NumberFormatException e) {
             Log.d(TAG, "Error reading value from Weight edit text.");
         }
 
-        try {
-            mReps = Integer.parseInt(binding.weightInputEditText.getText().toString());
-        } catch (NumberFormatException e) {
-            Log.d(TAG, "Error reading value from reps edit text.");
-        }
+        mReps = binding.timeInputEditText.getText().toString();
     }
 
 

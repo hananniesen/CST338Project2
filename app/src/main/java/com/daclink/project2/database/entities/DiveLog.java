@@ -15,18 +15,20 @@ public class DiveLog {
     private int id;
     private String exercise;
     private double weight;
-    private int reps;
+    // reps changed to string for sake of being changed in the future
+    private String reps;
     private LocalDateTime date;
     private int userId;
 
 //    Dive log data -> TODO: Replace values
 //    private String typeOfDive;
 //    private LocalDateTime date;
+//    private String time;
 //    private double maxDepth;
 //    private String additionalCom;
 
 
-    public DiveLog(String exercise, double weight, int reps, int userId) {
+    public DiveLog(String exercise, double weight, String reps, int userId) {
         this.exercise = exercise;
         this.weight = weight;
         this.reps = reps;
@@ -81,11 +83,11 @@ public class DiveLog {
         this.weight = weight;
     }
 
-    public int getReps() {
+    public String getReps() {
         return reps;
     }
 
-    public void setReps(int reps) {
+    public void setReps(String reps) {
         this.reps = reps;
     }
 
