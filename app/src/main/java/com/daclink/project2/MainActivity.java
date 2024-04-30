@@ -38,6 +38,12 @@ public class MainActivity extends AppCompatActivity {
     double mWeight = 0.0;
     int mReps = 0;
 
+    //    Dive log data -> TODO: Replace values
+    //    private String typeOfDive;
+    //    private LocalDateTime? date;
+    //    private double maxDepth;
+    //    private String additionalCom;
+
     private int loggedInUserId = -1;
     private User user;
 
@@ -132,16 +138,16 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
         final AlertDialog alertDialog = alertBuilder.create();
 
-        alertBuilder.setMessage("Logout!");
+        alertBuilder.setMessage("Logout?");
 
-        alertBuilder.setPositiveButton("Logout?", new DialogInterface.OnClickListener() {
+        alertBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 logout();
             }
         });
 
-        alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        alertBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 alertDialog.dismiss();
