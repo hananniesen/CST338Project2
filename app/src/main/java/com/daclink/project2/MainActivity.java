@@ -34,10 +34,10 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = "DAC_DIVELOG";
 
-    // values will be changed in the future for the sake of matching a dive log
-    String mExercise = "";
-    double mWeight = 0.0;
-    String mReps = "";
+    String mDiveType = "";
+    String mTimeSpent = "";
+    double mMaxDepth = 0.0;
+    String mAdditionalComments = "";
 
     private int loggedInUserId = -1;
     private User user;
@@ -176,10 +176,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void insertDiveLogRecord() {
-        if (mExercise.isEmpty()) {
+        if (mDiveType.isEmpty()) {
             return;
         }
-        DiveLog log = new DiveLog(mExercise, mWeight, mReps, loggedInUserId);
+        if (mTimeSpent.isEmpty()) {
+            return;
+        }
+        DiveLog log = new DiveLog(mDiveType, mTimeSpent, mMaxDepth, mAdditionalComments, loggedInUserId);
         repository.insertDiveLog(log);
     }
 
@@ -196,14 +199,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getInformationFromDisplay() {
-        mExercise = binding.diveTypeInputEditText.getText().toString();
+        mDiveType = binding.diveTypeInputEditText.getText().toString();
+
+        mTimeSpent = binding.timeInputEditText.getText().toString();
+
         try {
-            mWeight = Double.parseDouble(binding.maxDepthInputEditText.getText().toString());
+            mMaxDepth = Double.parseDouble(binding.maxDepthInputEditText.getText().toString());
         } catch (NumberFormatException e) {
             Log.d(TAG, "Error reading value from Weight edit text.");
         }
 
-        mReps = binding.timeInputEditText.getText().toString();
+        mAdditionalComments = binding.addiCommInputEditText.getText().toString();
     }
 
 

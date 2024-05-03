@@ -19,81 +19,118 @@
 
     <TextView
         android:id="@+id/diveTypeLabelTextView"
-        android:layout_width="100dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="375dp"
+        android:layout_height="35dp"
         android:layout_marginTop="8dp"
         android:text="@string/divetype"
         android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logDisplayTextView" />
 
     <EditText
         android:id="@+id/diveTypeInputEditText"
-        android:layout_width="273dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="375dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
         android:hint="@string/enter_a_type_of_dive"
         android:inputType="textAutoComplete"
         android:padding="8dp"
-        app:layout_constraintBaseline_toBaselineOf="@id/diveTypeLabelTextView"
-        app:layout_constraintStart_toEndOf="@id/diveTypeLabelTextView" />
-
-    <TextView
-        android:id="@+id/maxDepthLabelTextView"
-        android:layout_width="100dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="16dip"
-        android:layout_marginTop="8dp"
-        android:text="@string/maxdepth"
-        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/diveTypeLabelTextView" />
-
-    <EditText
-        android:id="@+id/maxDepthInputEditText"
-        android:layout_width="273dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="8dp"
-        android:hint="@string/enter_a_max_depth_of_dive"
-        android:inputType="number|numberDecimal"
-        android:padding="8dp"
-        app:layout_constraintBaseline_toBaselineOf="@id/maxDepthLabelTextView"
-        app:layout_constraintStart_toEndOf="@id/maxDepthLabelTextView" />
+        app:layout_constraintTop_toBottomOf="@id/diveTypeLabelTextView" />
 
     <TextView
         android:id="@+id/timeLabelTextView"
-        android:layout_width="100dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="16dip"
+        android:layout_width="375dp"
+        android:layout_height="35dp"
         android:layout_marginTop="8dp"
         android:text="@string/time"
         android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/maxDepthLabelTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/diveTypeInputEditText" />
 
     <EditText
         android:id="@+id/timeInputEditText"
-        android:layout_width="273dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="375dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
         android:hint="@string/enter_time_spent_at_depth"
-        android:inputType="number"
+        android:inputType="textAutoComplete"
         android:padding="8dp"
-        app:layout_constraintBaseline_toBaselineOf="@id/timeLabelTextView"
-        app:layout_constraintStart_toEndOf="@id/timeLabelTextView" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/timeLabelTextView"
+        tools:layout_editor_absoluteX="69dp" />
+
+    <TextView
+        android:id="@+id/maxDepthLabelTextView"
+        android:layout_width="375dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/maxdepth"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timeInputEditText" />
+
+    <EditText
+        android:id="@+id/maxDepthInputEditText"
+        android:layout_width="375dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:hint="@string/enter_a_max_depth_of_dive"
+        android:inputType="number|numberDecimal"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/maxDepthLabelTextView"
+        tools:layout_editor_absoluteX="58dp" />
+
+    <TextView
+        android:id="@+id/addiCommLabelTextView"
+        android:layout_width="375dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/additional_comments"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/maxDepthInputEditText" />
+
+    <EditText
+        android:id="@+id/addiCommInputEditText"
+        android:layout_width="375dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:hint="@string/enter_any_additional_comments"
+        android:inputType="textAutoComplete"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addiCommLabelTextView"
+        tools:layout_editor_absoluteX="69dp" />
 
     <Button
-        android:layout_width="390dp"
-        android:layout_height="125dp"
-        android:layout_marginTop="16dp"
+        android:id="@+id/logButton"
+        android:layout_width="350dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="12dp"
         android:text="@string/log"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/timeInputEditText"
-        android:id="@+id/logButton"
-        />
+        app:layout_constraintTop_toBottomOf="@id/addiCommInputEditText" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

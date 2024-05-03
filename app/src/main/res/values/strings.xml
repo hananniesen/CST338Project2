@@ -8,16 +8,18 @@
     <string name="sign_up">Sign Up</string>
     <string name="create_account_button">Create Account</string>
     <string name="createAccountText">Please Create an Account</string>
-    <string name="divetype">DiveType</string>
+    <string name="divetype">Dive Type:</string>
     <string name="enter_a_type_of_dive">Enter a Type of Dive</string>
-    <string name="maxdepth">Max-Depth</string>
+    <string name="maxdepth">Maximum Depth:</string>
     <string name="enter_a_max_depth_of_dive">Enter Max Depth of the Dive</string>
     <string name="enter_time_spent_at_depth">Enter Time Spent at Depth</string>
-    <string name="time">Time</string>
+    <string name="time">Time:</string>
     <string name="log">Log!</string>
     <string name="nothing_to_show">Nothing to show, time to go diving!</string>
     <string name="preference_file_key">daclinkPreferenceFileNameDivelog</string>
     <string name="preference_userId_key">daclinkPreferenceUserIdKeyDiveLog</string>
     <string name="already_have_an_account">Already have an account?</string>
     <string name="repeat_password">Repeat Password</string>
+    <string name="enter_any_additional_comments">Enter Any Additional Comments</string>
+    <string name="additional_comments">Additional Comments:</string>
 </resources>
