@@ -20,7 +20,7 @@ public class DiveLog {
     private String additionalComments;
     private LocalDateTime date;
 
-
+//
     public DiveLog(String diveType, String timeSpent, double maxDepth, String additionalComments, int userId) {
         this.diveType = diveType;
         this.timeSpent = timeSpent;
