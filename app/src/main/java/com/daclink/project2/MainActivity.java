@@ -39,6 +39,12 @@ public class MainActivity extends AppCompatActivity {
     double mMaxDepth = 0.0;
     String mAdditionalComments = "";
 
+    //    Dive log data -> TODO: Replace values
+    //    private String typeOfDive;
+    //    private LocalDateTime? date;
+    //    private double maxDepth;
+    //    private String additionalCom;
+
     private int loggedInUserId = -1;
     private User user;
 
