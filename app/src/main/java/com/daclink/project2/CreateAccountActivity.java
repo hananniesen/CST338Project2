@@ -58,12 +58,12 @@ public class CreateAccountActivity extends AppCompatActivity {
 
 
         // TODO: Finish Create Account parameters (Still need to check for password meeting requirements)
-        // It works but instead of going directly into the landing page after signing up, you have to log in again
+        // It works but instead of going directly into the landing page after signing up, you have to log in
 
 
         userObserver.observe(this, user -> {
             if (user != null) {
-                toastMaker(String.format("%s already in use.", username));
+                toastMaker(String.format("%s already exists.", username));
                 binding.userNameCreateEditText.setSelection(0);
             } else {
                 String password = binding.passwordCreateEditText.getText().toString();
@@ -78,6 +78,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                 } else if (password.equals(repeatPassword)) {
                     User newUser = new User(username, password);
                     repository.insertUser(newUser);
+                    toastMaker("Account successfully created!");
                     startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), user.getId()));
                 } else {
                     toastMaker("Invalid passwords");
