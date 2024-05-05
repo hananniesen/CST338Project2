@@ -39,12 +39,6 @@ public class MainActivity extends AppCompatActivity {
     double mMaxDepth = 0.0;
     String mAdditionalComments = "";
 
-    //    Dive log data -> TODO: Replace values
-    //    private String typeOfDive;
-    //    private LocalDateTime? date;
-    //    private double maxDepth;
-    //    private String additionalCom;
-
     private int loggedInUserId = -1;
     private User user;
 
@@ -57,13 +51,16 @@ public class MainActivity extends AppCompatActivity {
         repository = DiveLogRepository.getRepository(getApplication());
         loginUser(savedInstanceState);
 
-        // User is not logged in at this point, go to login screen
+
         if (loggedInUserId == -1) {
             Intent intent = LoginActivity.loginIntentFactory(getApplicationContext());
             startActivity(intent);
         }
 
         updateSharedPreference();
+        Intent intent = DiverLandingPage.diverLandingPageIntentFactory(getApplicationContext());
+        startActivity(intent);
+
 
         binding.logDisplayTextView.setMovementMethod(new ScrollingMovementMethod());
         updateDisplay();
@@ -212,7 +209,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             mMaxDepth = Double.parseDouble(binding.maxDepthInputEditText.getText().toString());
         } catch (NumberFormatException e) {
-            Log.d(TAG, "Error reading value from Weight edit text.");
+            Log.d(TAG, "Error reading value from max depth edit text.");
         }
 
         mAdditionalComments = binding.addiCommInputEditText.getText().toString();

@@ -22,4 +22,9 @@
     <string name="repeat_password">Repeat Password</string>
     <string name="enter_any_additional_comments">Enter Any Additional Comments</string>
     <string name="additional_comments">Additional Comments:</string>
+    <string name="view_logs">View Logs</string>
+    <string name="log_dive">Log Dive</string>
+    <string name="settings">Settings</string>
+    <string name="view_class_logs">View Class Logs</string>
+    <string name="submit_dive_plan">Submit Dive Plan</string>
 </resources>
