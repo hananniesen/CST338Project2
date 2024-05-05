@@ -28,4 +28,6 @@
     <string name="view_class_logs">View Class Logs</string>
     <string name="submit_dive_plan">Submit Dive Plan</string>
     <string name="change_username">Change Username</string>
+    <string name="bg">BACKGROUND</string>
+    <string name="icon">ICON</string>
 </resources>
