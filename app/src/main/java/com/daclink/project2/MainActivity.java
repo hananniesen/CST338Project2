@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         repository = DiveLogRepository.getRepository(getApplication());
         loginUser(savedInstanceState);
 
+        invalidateOptionsMenu();
 
         if (loggedInUserId == -1) {
             Intent intent = LoginActivity.loginIntentFactory(getApplicationContext());
@@ -118,10 +119,11 @@ public class MainActivity extends AppCompatActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem item = menu.findItem(R.id.logoutMenuItem);
         item.setVisible(true);
-        if (user == null) {
-            return false;
-        }
-        item.setTitle(user.getUsername());
+//        if (user == null) {
+//            return false;
+//        }
+//      item.setTitle(user.getUsername());
+        item.setTitle("USER");
         item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(@NonNull MenuItem item) {

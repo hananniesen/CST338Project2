@@ -19,6 +19,7 @@ public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
 
     private DiveLogRepository repository;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -7,11 +7,14 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.daclink.project2.database.DiveLogRepository;
 import com.daclink.project2.databinding.ActivityDiverLandingPageBinding;
+import com.daclink.project2.database.entities.User;
 
 public class DiverLandingPage extends AppCompatActivity {
 
     private ActivityDiverLandingPageBinding binding;
+    private DiveLogRepository repository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
