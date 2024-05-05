@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettingsActivity">
+
+    <Button
+        android:id="@+id/instructorsButton"
+        android:layout_width="300dp"
+        android:layout_height="65dp"
+        android:layout_margin="16dp"
+        android:text="Instructors"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/changeUsernameTextView"
+        android:layout_width="275dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="30dp"
+        android:text="Username: [username]"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/instructorsButton" />
+
+    <ImageButton
+        android:id="@+id/usernameEditImageButton"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="30dp"
+        android:padding="12dp"
+        app:layout_constraintBaseline_toBaselineOf="@id/changeUsernameTextView"
+        app:layout_constraintStart_toEndOf="@+id/changeUsernameTextView"
+        app:srcCompat="@drawable/ic_edit" />
+
+    <TextView
+        android:id="@+id/changePasswordTextView"
+        android:layout_width="275dp"
+        android:layout_height="45dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
+        android:text="Password: ••••••••••"
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@id/changeUsernameTextView"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="197dp" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        app:layout_constraintStart_toEndOf="@+id/changePasswordTextView"
+        app:srcCompat="@drawable/ic_edit"
+        tools:layout_editor_absoluteY="199dp" />
+
+    <TextView
+        android:id="@+id/deleteAccountTextView"
+        android:layout_width="375dp"
+        android:layout_height="66dp"
+        android:layout_margin="16dp"
+        android:gravity="center"
+        android:text="Enter Password to Delete Account"
+        android:textSize="23dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="391dp" />
+
+    <EditText
+        android:id="@+id/passwordDeleteAccountEditText"
+        android:layout_width="275dp"
+        android:layout_height="60dp"
+        android:layout_margin="16dp"
+        android:gravity="center"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deleteAccountTextView" />
+
+    <EditText
+        android:id="@+id/repeatPasswordDeleteAccountEditText"
+        android:layout_width="275dp"
+        android:layout_height="60dp"
+        android:layout_margin="16dp"
+        android:gravity="center"
+        android:hint="@string/repeat_password"
+        android:inputType="textPassword"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordDeleteAccountEditText" />
+
+    <Button
+        android:id="@+id/deleteAccountButton"
+        android:layout_width="300dp"
+        android:layout_height="65dp"
+        android:layout_margin="16dp"
+        android:text="Delete Account"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/repeatPasswordDeleteAccountEditText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
