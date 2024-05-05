@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     double mMaxDepth = 0.0;
     String mAdditionalComments = "";
 
-    private int loggedInUserId = -1;
+    private int loggedInUserId = 1;
     private User user;
 
     @Override
@@ -59,9 +59,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         updateSharedPreference();
-        Intent intent = DiverLandingPage.diverLandingPageIntentFactory(getApplicationContext());
-        startActivity(intent);
-
+// for going into diver landing page (Isn't completed as of yet)
+//        if (loggedInUserId == 1) {
+//            Intent intent = DiverLandingPage.diverLandingPageIntentFactory(getApplicationContext());
+//            startActivity(intent);
+//        }
 
         binding.logDisplayTextView.setMovementMethod(new ScrollingMovementMethod());
         updateDisplay();
