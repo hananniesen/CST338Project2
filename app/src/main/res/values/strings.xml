@@ -1,20 +1,20 @@
 <resources>
     <string name="app_name">DIVE HUB</string>
-    <string name="login_welcome">Please Sign In</string>
+    <string name="login_welcome">Sign In</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
-    <string name="login">Login!</string>
+    <string name="login">Login</string>
     <string name="create_an_account">Sign Up</string>
     <string name="sign_up">Sign Up</string>
     <string name="create_account_button">Create Account</string>
-    <string name="createAccountText">Please Create an Account</string>
+    <string name="createAccountText">Create an Account</string>
     <string name="divetype">Dive Type:</string>
     <string name="enter_a_type_of_dive">Enter a Type of Dive</string>
     <string name="maxdepth">Maximum Depth:</string>
     <string name="enter_a_max_depth_of_dive">Enter Max Depth of the Dive</string>
     <string name="enter_time_spent_at_depth">Enter Time Spent at Depth</string>
     <string name="time">Time:</string>
-    <string name="log">Log!</string>
+    <string name="log">Log Dive</string>
     <string name="nothing_to_show">Nothing to show, time to go diving!</string>
     <string name="preference_file_key">daclinkPreferenceFileNameDivelog</string>
     <string name="preference_userId_key">daclinkPreferenceUserIdKeyDiveLog</string>
