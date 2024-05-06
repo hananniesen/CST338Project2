@@ -177,6 +177,13 @@ public class SettingsActivity extends AppCompatActivity {
                 String password = binding.passwordDeleteAccountEditText.getText().toString();
                 String repeatPassword = binding.repeatPasswordDeleteAccountEditText.getText().toString();
                 if (password.equals(user.getPassword()) && password.equals(repeatPassword)) {
+                    if (user.isAdmin()) {
+                        toastMaker("You can't delete an admin user");
+                        binding.passwordDeleteAccountEditText.setSelection(0);
+                        binding.repeatPasswordDeleteAccountEditText.setSelection(0);
+                        userObserver.removeObservers(this);
+                        return;
+                    }
                     repository.deleteUser(user);
                     loggedInUserId = -1;
                     updateSharedPreference();
@@ -193,6 +200,7 @@ public class SettingsActivity extends AppCompatActivity {
                 }
             } else {
                 toastMaker("Account has been successfully deleted");
+                userObserver.removeObservers(this);
             }
         });
     }

@@ -132,21 +132,9 @@ public class DiveHubRepository {
         return diveLogDAO.getRecordsByUserIdLiveData(loggedInUserId);
     }
 
-    @Deprecated
-    public ArrayList<DiveLog> getAllLogsByUserId(int loggedInUserId) {
-        Future<ArrayList<DiveLog>> future = DiveLogDatabase.databaseWriteExecutor.submit(
-                new Callable<ArrayList<DiveLog>>() {
-                    @Override
-                    public ArrayList<DiveLog> call() throws Exception {
-                        return (ArrayList<DiveLog>) diveLogDAO.getRecordsByUserId(loggedInUserId);
-                    }
-                }
-        );
-        try{
-            return future.get();
-        } catch (InterruptedException | ExecutionException e) {
-            Log.i(MainActivity.TAG, "Problem when getting all GymLogs in the repository");
-        }
-        return null;
+    public void updateUser(User user) {
+        DiveLogDatabase.databaseWriteExecutor.execute(() -> {
+            userDAO.update(user);
+        });
     }
 }
