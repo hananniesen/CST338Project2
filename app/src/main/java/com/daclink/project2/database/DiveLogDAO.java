@@ -1,5 +1,6 @@
 package com.daclink.project2.database;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -19,4 +20,7 @@ public interface DiveLogDAO {
 
     @Query("SELECT * FROM " + DiveLogDatabase.DIVE_LOG_TABLE + " WHERE userId = :loggedInUserId ORDER BY date DESC")
     List<DiveLog> getRecordsByUserId(int loggedInUserId);
+
+    @Query("SELECT * FROM " + DiveLogDatabase.DIVE_LOG_TABLE + " WHERE userId = :loggedInUserId ORDER BY date DESC")
+    LiveData<List<DiveLog>> getRecordsByUserIdLiveData(int loggedInUserId);
 }

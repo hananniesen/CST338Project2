@@ -69,7 +69,9 @@ public class MainActivity extends AppCompatActivity {
         binding.logDiveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                startActivity(LogDiveActivity.logDiveActivityIntentFactory(getApplicationContext()));
+                Intent intent = new Intent(MainActivity.this, LogDiveActivity.class);
+                intent.putExtra("loggedInUserId", user.getId());
+                startActivity(intent);
             }
         });
 

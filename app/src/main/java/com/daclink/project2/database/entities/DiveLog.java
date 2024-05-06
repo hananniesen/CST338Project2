@@ -6,7 +6,9 @@ import androidx.room.PrimaryKey;
 
 import com.daclink.project2.database.DiveLogDatabase;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 @Entity(tableName = DiveLogDatabase.DIVE_LOG_TABLE)
@@ -19,6 +21,7 @@ public class DiveLog {
     private double maxDepth;
     private String additionalComments;
     private LocalDateTime date;
+    final static DateTimeFormatter dateConvertedFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 
 //
     public DiveLog(String diveType, String timeSpent, double maxDepth, String additionalComments, int userId) {
@@ -33,12 +36,12 @@ public class DiveLog {
     @NonNull
     @Override
     public String toString() {
-        return "Date: \n" + date.toString() + '\n' +
-                "Dive Type: \n" + diveType + '\n' +
-                "Time Spent at Depth: \n" + timeSpent + '\n' +
-                "Max Depth: \n" + maxDepth + '\n' +
-                "Additional Comments: \n" + additionalComments + '\n' +
-                "=-=-=-=-=-=-=\n";
+        String convertedDate = date.format(dateConvertedFormat);
+        return "Date: " + convertedDate + "\n\n" +
+                "Dive Type: " + diveType + "\n\n" +
+                "Time Spent at Depth: " + timeSpent + "\n\n" +
+                "Max Depth: " + maxDepth + "\n\n" +
+                "Additional Comments: \n" + additionalComments;
     }
 
     @Override

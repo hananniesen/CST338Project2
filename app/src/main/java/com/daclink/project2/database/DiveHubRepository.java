@@ -10,6 +10,7 @@ import com.daclink.project2.database.entities.DiveLog;
 import com.daclink.project2.database.entities.User;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -96,6 +97,11 @@ public class DiveHubRepository {
         return userDAO.getUserByUserId(userId);
     }
 
+    public LiveData<List<DiveLog>> getAllLogsByUserIdLiveData(int loggedInUserId) {
+        return diveLogDAO.getRecordsByUserIdLiveData(loggedInUserId);
+    }
+
+    @Deprecated
     public ArrayList<DiveLog> getAllLogsByUserId(int loggedInUserId) {
         Future<ArrayList<DiveLog>> future = DiveLogDatabase.databaseWriteExecutor.submit(
                 new Callable<ArrayList<DiveLog>>() {
