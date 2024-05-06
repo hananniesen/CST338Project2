@@ -49,6 +49,7 @@ public class AdminSettingsActivity extends AppCompatActivity {
             }
         });
 
+    }
     private void updateSharedPreference() {
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.preference_file_key),
                 Context.MODE_PRIVATE);
