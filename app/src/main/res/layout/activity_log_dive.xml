@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LogDiveActivity"
+    android:background="@color/light_blue">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="400dp"
+        android:layout_height="200dp"
+        android:background="@drawable/wave_back"
+        android:contentDescription="@string/bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="417dp"
+        android:layout_height="149dp"
+        android:background="@drawable/wave_mid"
+        android:contentDescription="@string/bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:layout_width="412dp"
+        android:layout_height="103dp"
+        android:background="@drawable/wave_for"
+        android:contentDescription="@string/bg"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/diveTypeLabelTextView"
+        android:layout_width="375dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/divetype"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/deep_blue"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/diveTypeInputEditText"
+        android:layout_width="375dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:hint="@string/enter_a_type_of_dive"
+        android:inputType="textAutoComplete"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/diveTypeLabelTextView" />
+
+    <TextView
+        android:id="@+id/timeLabelTextView"
+        android:layout_width="375dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/time"
+        android:textSize="24sp"
+        android:textColor="@color/deep_blue"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/diveTypeInputEditText" />
+
+    <EditText
+        android:id="@+id/timeInputEditText"
+        android:layout_width="375dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:hint="@string/enter_time_spent_at_depth"
+        android:inputType="textAutoComplete"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/timeLabelTextView"
+        tools:layout_editor_absoluteX="69dp" />
+
+    <TextView
+        android:id="@+id/maxDepthLabelTextView"
+        android:layout_width="375dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/maxdepth"
+        android:textSize="24sp"
+        android:textColor="@color/deep_blue"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timeInputEditText" />
+
+    <EditText
+        android:id="@+id/maxDepthInputEditText"
+        android:layout_width="375dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:hint="@string/enter_a_max_depth_of_dive"
+        android:inputType="number|numberDecimal"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/maxDepthLabelTextView"
+        tools:layout_editor_absoluteX="58dp" />
+
+    <TextView
+        android:id="@+id/addiCommLabelTextView"
+        android:layout_width="375dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/additional_comments"
+        android:textSize="24sp"
+        android:textColor="@color/deep_blue"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/maxDepthInputEditText" />
+
+    <EditText
+        android:id="@+id/addiCommInputEditText"
+        android:layout_width="375dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:hint="@string/enter_any_additional_comments"
+        android:inputType="textAutoComplete"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addiCommLabelTextView"
+        tools:layout_editor_absoluteX="69dp" />
+
+    <Button
+        android:id="@+id/logButton"
+        android:layout_width="350dp"
+        android:layout_height="95dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/log"
+        android:background="@drawable/button_fill"
+        android:textColor="@color/light_blue"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addiCommInputEditText" />
+
+    <Button
+        android:id="@+id/viewLogsButton"
+        android:layout_width="350dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/view_logs"
+        android:background="@drawable/button_fill"
+        android:textColor="@color/light_blue"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,31 +7,26 @@ import androidx.room.PrimaryKey;
 import com.daclink.project2.database.DiveLogDatabase;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 @Entity(tableName = DiveLogDatabase.DIVE_LOG_TABLE)
 public class DiveLog {
     @PrimaryKey(autoGenerate = true)
     private int id;
-    private String exercise;
-    private double weight;
-    // reps changed to string for sake of being changed in the future
-    private String reps;
-    private LocalDateTime date;
     private int userId;
+    private String diveType;
+    private String timeSpent;
+    private double maxDepth;
+    private String additionalComments;
+    private LocalDateTime date;
+    final static DateTimeFormatter dateConvertedFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 
-//    Dive log data -> TODO: Replace values
-//    private String typeOfDive;
-//    private LocalDateTime date;
-//    private String time;
-//    private double maxDepth;
-//    private String additionalCom;
-
-
-    public DiveLog(String exercise, double weight, String reps, int userId) {
-        this.exercise = exercise;
-        this.weight = weight;
-        this.reps = reps;
+    public DiveLog(String diveType, String timeSpent, double maxDepth, String additionalComments, int userId) {
+        this.diveType = diveType;
+        this.timeSpent = timeSpent;
+        this.maxDepth = maxDepth;
+        this.additionalComments = additionalComments;
         this.userId = userId;
         date = LocalDateTime.now();
     }
@@ -39,11 +34,12 @@ public class DiveLog {
     @NonNull
     @Override
     public String toString() {
-        return exercise + '\n' +
-                "weight: " + weight + '\n' +
-                "reps: " + reps + '\n' +
-                "date: " + date.toString() + '\n' +
-                "=-=-=-=-=-=-=\n";
+        String convertedDate = date.format(dateConvertedFormat);
+        return "Date: " + convertedDate + "\n\n" +
+                "Dive Type: " + diveType + "\n\n" +
+                "Time Spent at Depth: " + timeSpent + "\n\n" +
+                "Max Depth: " + maxDepth + "\n\n" +
+                "Additional Comments: \n" + additionalComments;
     }
 
     @Override
@@ -51,12 +47,12 @@ public class DiveLog {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         DiveLog diveLog = (DiveLog) o;
-        return id == diveLog.id && Double.compare(weight, diveLog.weight) == 0 && reps == diveLog.reps && userId == diveLog.userId && Objects.equals(exercise, diveLog.exercise) && Objects.equals(date, diveLog.date);
+        return id == diveLog.id && userId == diveLog.userId && Double.compare(maxDepth, diveLog.maxDepth) == 0 && Objects.equals(diveType, diveLog.diveType) && Objects.equals(date, diveLog.date) && Objects.equals(timeSpent, diveLog.timeSpent) && Objects.equals(additionalComments, diveLog.additionalComments);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, exercise, weight, reps, date, userId);
+        return Objects.hash(id, userId, diveType, date, timeSpent, maxDepth, additionalComments);
     }
 
     public int getId() {
@@ -67,28 +63,20 @@ public class DiveLog {
         this.id = id;
     }
 
-    public String getExercise() {
-        return exercise;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setExercise(String exercise) {
-        this.exercise = exercise;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public double getWeight() {
-        return weight;
+    public String getDiveType() {
+        return diveType;
     }
 
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
-
-    public String getReps() {
-        return reps;
-    }
-
-    public void setReps(String reps) {
-        this.reps = reps;
+    public void setDiveType(String diveType) {
+        this.diveType = diveType;
     }
 
     public LocalDateTime getDate() {
@@ -99,11 +87,27 @@ public class DiveLog {
         this.date = date;
     }
 
-    public int getUserId() {
-        return userId;
+    public String getTimeSpent() {
+        return timeSpent;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setTimeSpent(String timeSpent) {
+        this.timeSpent = timeSpent;
+    }
+
+    public double getMaxDepth() {
+        return maxDepth;
+    }
+
+    public void setMaxDepth(double maxDepth) {
+        this.maxDepth = maxDepth;
+    }
+
+    public String getAdditionalComments() {
+        return additionalComments;
+    }
+
+    public void setAdditionalComments(String additionalComments) {
+        this.additionalComments = additionalComments;
     }
 }

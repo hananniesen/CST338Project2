@@ -2,58 +2,59 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_blue"
-    tools:context=".MainActivity">
+    tools:context=".DiverLandingPage">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="400dp"
         android:layout_height="200dp"
         android:background="@drawable/wave_back"
-        android:contentDescription="@string/bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"
+        android:contentDescription="@string/bg" />
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="417dp"
         android:layout_height="149dp"
         android:background="@drawable/wave_mid"
-        android:contentDescription="@string/bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"
+        android:contentDescription="@string/bg" />
 
     <ImageView
         android:layout_width="412dp"
         android:layout_height="103dp"
         android:background="@drawable/wave_for"
-        android:contentDescription="@string/bg"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"
+        android:contentDescription="@string/bg" />
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="@drawable/icon"
-        android:contentDescription="@string/icon"
-        app:layout_constraintBottom_toTopOf="@id/titleWelcomeTextView"
+        app:layout_constraintBottom_toTopOf="@+id/titleLandingTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.225" />
+        app:layout_constraintVertical_bias="0.225"
+        android:contentDescription="@string/icon" />
 
     <TextView
         android:layout_width="100dip"
@@ -61,86 +62,55 @@
         android:layout_marginTop="4dp"
         android:gravity="center"
         android:text="@string/app_name"
-        android:textColor="@color/dark_blue"
         android:textSize="20sp"
+        android:textColor="@color/dark_blue"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <TextView
-        android:id="@+id/titleWelcomeTextView"
+        android:id="@+id/titleLandingTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dip"
         android:gravity="center"
-        android:text="Welcome, User"
+        android:text="@string/welcome_to_the_dive_hub"
         android:textColor="@color/deep_blue"
         android:textSize="42sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.215" />
 
     <Button
-        android:id="@+id/viewLogsButton"
-        android:layout_width="300dp"
+        android:id="@+id/landingSignUpButton"
+        android:layout_width="375dp"
         android:layout_height="65dp"
         android:layout_margin="16dp"
         android:background="@drawable/button_border"
-        android:text="@string/view_logs"
+        android:text="@string/get_started"
         android:textColor="@color/orange"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleWelcomeTextView" />
-
-    <Button
-        android:id="@+id/logDiveButton"
-        android:layout_width="300dp"
-        android:layout_height="65dp"
-        android:layout_margin="16dp"
-        android:background="@drawable/button_border"
-        android:text="@string/log_dive"
-        android:textColor="@color/orange"
-        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/viewLogsButton" />
-
-    <Button
-        android:id="@+id/adminSettingsButton"
-        android:layout_width="300dp"
-        android:layout_height="65dp"
-        android:layout_margin="16dp"
-        android:background="@drawable/button_fill"
-        android:text="@string/admin_settings"
-        android:textColor="@color/light_blue"
-        android:textSize="25sp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@id/settingsButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/logDiveButton"
-        app:layout_constraintVertical_bias="0.85"
+        app:layout_constraintTop_toBottomOf="@id/titleLandingTextView"
         />
 
     <Button
-        android:id="@+id/settingsButton"
-        android:layout_width="300dp"
+        android:id="@+id/landingLoginButton"
+        android:layout_width="375dp"
         android:layout_height="65dp"
         android:layout_margin="16dp"
+        android:layout_marginTop="176dp"
         android:background="@drawable/button_fill"
-        android:text="@string/settings"
+        android:text="Already have an account? Sign In"
         android:textColor="@color/light_blue"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/logDiveButton"
-        app:layout_constraintVertical_bias="0.85"
-        />
-
+        app:layout_constraintTop_toBottomOf="@id/landingSignUpButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>

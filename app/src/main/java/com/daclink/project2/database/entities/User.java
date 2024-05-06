@@ -15,12 +15,14 @@ public class User {
     private String username;
     private String password;
     private boolean isAdmin;
+    private boolean isInstructor;
 
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
         isAdmin = false;
+        isInstructor = false;
     }
 
     @Override
@@ -28,12 +30,12 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id && isAdmin == user.isAdmin && Objects.equals(username, user.username) && Objects.equals(password, user.password);
+        return id == user.id && isAdmin == user.isAdmin && isInstructor == user.isInstructor && Objects.equals(username, user.username) && Objects.equals(password, user.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password, isAdmin);
+        return Objects.hash(id, username, password, isAdmin, isInstructor);
     }
 
     public int getId() {
@@ -66,5 +68,13 @@ public class User {
 
     public void setAdmin(boolean admin) {
         isAdmin = admin;
+    }
+
+    public boolean isInstructor() {
+        return isInstructor;
+    }
+
+    public void setInstructor(boolean instructor) {
+        isInstructor = instructor;
     }
 }

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_blue"
+    tools:context=".SettingsActivity">
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/icon"
+        android:contentDescription="@string/icon"
+        app:layout_constraintBottom_toTopOf="@id/instructorsButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.225" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="25dip"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:text="@string/dive_instructors"
+        android:textColor="@color/dark_blue"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+    <Button
+        android:id="@+id/instructorsButton"
+        android:layout_width="300dp"
+        android:layout_height="65dp"
+        android:layout_margin="16dp"
+        android:text="@string/instructorsClass"
+        android:textSize="25sp"
+        android:background="@drawable/button_border"
+        android:textColor="@color/orange"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.215"
+        />
+
+    <TextView
+        android:id="@+id/changeUsernameTextView"
+        android:layout_width="275dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center_vertical"
+        android:text="@string/username_user"
+        android:textColor="@color/deep_blue"
+        android:textSize="26sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/instructorsButton" />
+
+    <ImageButton
+        android:id="@+id/usernameEditImageButton"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_margin="30dp"
+        android:padding="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/changeUsernameTextView"
+        app:layout_constraintTop_toBottomOf="@+id/instructorsButton"
+        app:srcCompat="@drawable/ic_edit"
+        android:contentDescription="@string/edit_username" />
+
+    <TextView
+        android:id="@+id/changePasswordTextView"
+        android:layout_width="275dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center_vertical"
+        android:text="@string/passwordInSettings"
+        android:textColor="@color/deep_blue"
+        android:textSize="26sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/changeUsernameTextView" />
+
+    <ImageButton
+        android:id="@+id/passwordEditImageButton"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_margin="30dp"
+        android:layout_marginStart="20dp"
+        android:padding="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/changePasswordTextView"
+        app:layout_constraintTop_toBottomOf="@+id/usernameEditImageButton"
+        app:srcCompat="@drawable/ic_edit"
+        android:contentDescription="@string/edit_password"
+        />
+
+    <TextView
+        android:id="@+id/deleteAccountTextView"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="95dp"
+        android:gravity="center"
+        android:text="@string/deleting_your_account"
+        android:textColor="@color/deep_blue"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/changePasswordTextView" />
+
+    <EditText
+        android:id="@+id/passwordDeleteAccountEditText"
+        android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:autofillHints="Please enter password"
+        android:gravity="center"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deleteAccountTextView" />
+
+    <EditText
+        android:id="@+id/repeatPasswordDeleteAccountEditText"
+        android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:autofillHints="Please reenter password"
+        android:gravity="center"
+        android:hint="@string/repeat_password"
+        android:inputType="textPassword"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordDeleteAccountEditText" />
+
+    <Button
+        android:id="@+id/deleteAccountButton"
+        android:layout_width="300dp"
+        android:layout_height="65dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/red_button_fill"
+        android:text="@string/delete_account"
+        android:textColor="@color/white"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/repeatPasswordDeleteAccountEditText"
+        app:layout_constraintVertical_bias="0.25"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
