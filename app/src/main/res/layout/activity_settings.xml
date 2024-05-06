@@ -39,7 +39,7 @@
         android:layout_width="300dp"
         android:layout_height="65dp"
         android:layout_margin="16dp"
-        android:text="@string/instructors"
+        android:text="@string/instructorsClass"
         android:textSize="25sp"
         android:background="@drawable/button_border"
         android:textColor="@color/orange"

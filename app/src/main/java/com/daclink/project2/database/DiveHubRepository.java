@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData;
 
 import com.daclink.project2.MainActivity;
 import com.daclink.project2.database.entities.DiveLog;
+import com.daclink.project2.database.entities.InstructorsClass;
 import com.daclink.project2.database.entities.User;
 
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ import java.util.concurrent.Future;
 public class DiveHubRepository {
     private final DiveLogDAO diveLogDAO;
     private final UserDAO userDAO;
+    private final InstructorsDAO instructorsDAO;
     private ArrayList<DiveLog> allLogs;
 
     private static DiveHubRepository repository;
@@ -26,6 +28,7 @@ public class DiveHubRepository {
         DiveLogDatabase db = DiveLogDatabase.getDatabase(application);
         this.diveLogDAO = db.diveLogDAO();
         this.userDAO = db.userDAO();
+        this.instructorsDAO = db.instructorsDAO();
         this.allLogs = (ArrayList<DiveLog>) this.diveLogDAO.getAllRecords();
     }
 
@@ -96,6 +99,34 @@ public class DiveHubRepository {
     public LiveData<User> getUserByUserId(int userId) {
         return userDAO.getUserByUserId(userId);
     }
+
+
+    // TODO: Unfinished
+//    public void insertUserToInstructorClass(InstructorsClass instructor) {
+//        DiveLogDatabase.databaseWriteExecutor.execute(() ->
+//                {
+//                    instructor.insertUser(user);
+//                }
+//                );
+//    }
+
+    public void deleteInstructorClass(InstructorsClass instructor) {
+        DiveLogDatabase.databaseWriteExecutor.execute(() ->
+                {
+                    instructorsDAO.delete(instructor);
+                }
+        );
+    }
+
+    public LiveData<InstructorsClass> getInstructorByInstructorId(int id) {
+        return instructorsDAO.getInstructorByInstructorId(id);
+    }
+
+
+    // TODO: Unfinished
+//    public String getInstructorClassStudents(int loggedInUserId) {
+//        return instructorsDAO.getInstructorClassStudents(loggedInUserId);
+//    }
 
     public LiveData<List<DiveLog>> getAllLogsByUserIdLiveData(int loggedInUserId) {
         return diveLogDAO.getRecordsByUserIdLiveData(loggedInUserId);

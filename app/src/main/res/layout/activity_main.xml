@@ -111,6 +111,23 @@
         app:layout_constraintTop_toBottomOf="@id/viewLogsButton" />
 
     <Button
+        android:id="@+id/adminSettingsButton"
+        android:layout_width="300dp"
+        android:layout_height="65dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/button_fill"
+        android:text="@string/admin_settings"
+        android:textColor="@color/light_blue"
+        android:textSize="25sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/settingsButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logDiveButton"
+        app:layout_constraintVertical_bias="0.85"
+        />
+
+    <Button
         android:id="@+id/settingsButton"
         android:layout_width="300dp"
         android:layout_height="65dp"
@@ -124,7 +141,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/logDiveButton"
         app:layout_constraintVertical_bias="0.85"
-
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

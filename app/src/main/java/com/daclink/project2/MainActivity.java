@@ -53,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
         LiveData<User> userObserver = repository.getUserByUserId(loggedInUserId);
         userObserver.observe(this, user -> {
             this.user = user;
+            if (this.user != null && user.isAdmin()) {
+                binding.adminSettingsButton.setVisibility(View.VISIBLE);
+            }
             if (this.user != null) {
                 binding.titleWelcomeTextView.setText(String.format("Welcome, %s", user.getUsername()));
                 invalidateOptionsMenu();
@@ -72,6 +75,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, LogDiveActivity.class);
+                intent.putExtra("loggedInUserId", user.getId());
+                startActivity(intent);
+            }
+        });
+
+        binding.adminSettingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AdminSettingsActivity.class);
                 intent.putExtra("loggedInUserId", user.getId());
                 startActivity(intent);
             }

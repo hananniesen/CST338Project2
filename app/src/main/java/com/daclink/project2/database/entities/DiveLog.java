@@ -6,7 +6,6 @@ import androidx.room.PrimaryKey;
 
 import com.daclink.project2.database.DiveLogDatabase;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
@@ -23,7 +22,6 @@ public class DiveLog {
     private LocalDateTime date;
     final static DateTimeFormatter dateConvertedFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 
-//
     public DiveLog(String diveType, String timeSpent, double maxDepth, String additionalComments, int userId) {
         this.diveType = diveType;
         this.timeSpent = timeSpent;

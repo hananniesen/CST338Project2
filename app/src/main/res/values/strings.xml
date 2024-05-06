@@ -30,7 +30,7 @@
     <string name="change_username">Change Username</string>
     <string name="bg">BACKGROUND</string>
     <string name="icon">ICON</string>
-    <string name="instructors">Instructors</string>
+    <string name="instructorsClass">Instructors</string>
     <string name="deleting_your_account">Deleting Your Account</string>
     <string name="sign_in">Sign In</string>
     <string name="welcome_to_the_dive_hub">Welcome to the Dive Hub</string>
@@ -47,4 +47,11 @@
     <string name="previously_logged_dives">Previously Logged Dives</string>
     <string name="log_a_new_dive">Log a New Dive</string>
     <string name="dive_instructors">Dive Instructors</string>
+    <string name="admin_settings">**Admin Settings**</string>
+    <string name="super_special">SUPER SPECIAL</string>
+    <string name="deleting_a_user_s_account">Deleting a User\'s Account</string>
+    <string name="make_admin">Make Admin</string>
+    <string name="make_instructor">Make Instructor</string>
+    <string name="enter_a_username">Enter a Username:</string>
+    <string name="admin_username_prompt">Username:</string>
 </resources>
