@@ -1,33 +1,33 @@
 package com.daclink.project2;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.daclink.project2.database.DiveHubRepository;
 import com.daclink.project2.database.entities.DiveLog;
+import com.daclink.project2.database.entities.User;
 import com.daclink.project2.databinding.ActivityLogDiveBinding;
 import com.daclink.project2.viewHolders.DiveLogAdapter;
 import com.daclink.project2.viewHolders.DiveLogViewModel;
-
-import java.util.ArrayList;
 
 public class LogDiveActivity extends AppCompatActivity {
 
     ActivityLogDiveBinding binding;
     DiveHubRepository repository;
+    User user;
 
     private DiveLogViewModel diveLogViewModel;
 
@@ -46,19 +46,16 @@ public class LogDiveActivity extends AppCompatActivity {
         binding = ActivityLogDiveBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        diveLogViewModel = new ViewModelProvider(this).get(DiveLogViewModel.class);
-
-        RecyclerView recyclerView = binding.logDisplayRecyclerView;
-        final DiveLogAdapter adapter = new DiveLogAdapter(new DiveLogAdapter.DiveLogDiff());
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         repository = DiveHubRepository.getRepository(getApplication());
 
         loggedInUserId = getIntent().getIntExtra("loggedInUserId", -1);
 
-        diveLogViewModel.getAllLogsById(loggedInUserId).observe(this, diveLogs -> {
-            adapter.submitList(diveLogs);
+        LiveData<User> userObserver = repository.getUserByUserId(loggedInUserId);
+        userObserver.observe(this, user -> {
+            this.user = user;
+            if (this.user != null) {
+                invalidateOptionsMenu();
+            }
         });
 
         binding.logButton.setOnClickListener(new View.OnClickListener() {
@@ -66,6 +63,15 @@ public class LogDiveActivity extends AppCompatActivity {
             public void onClick(View v) {
                 getInformationFromDisplay();
                 insertDiveLogRecord();
+            }
+        });
+
+        binding.viewLogsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LogDiveActivity.this, ViewLogsActivity.class);
+                intent.putExtra("loggedInUserId", loggedInUserId);
+                startActivity(intent);
             }
         });
     }
@@ -79,16 +85,7 @@ public class LogDiveActivity extends AppCompatActivity {
         }
         DiveLog log = new DiveLog(mDiveType, mTimeSpent, mMaxDepth, mAdditionalComments, loggedInUserId);
         repository.insertDiveLog(log);
-        toastmaker("Dive Log Added");
-    }
-
-    @Deprecated
-    private void updateDisplay() {
-        ArrayList<DiveLog> allLogs = repository.getAllLogsByUserId(loggedInUserId);
-        StringBuilder sb = new StringBuilder();
-        for (DiveLog log : allLogs) {
-            sb.append(log);
-        }
+        toastMaker("Dive Log Added");
     }
 
     private void getInformationFromDisplay() {
@@ -103,6 +100,31 @@ public class LogDiveActivity extends AppCompatActivity {
         }
 
         mAdditionalComments = binding.addiCommInputEditText.getText().toString();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.logout_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem item = menu.findItem(R.id.logoutMenuItem);
+        item.setVisible(true);
+        if (user == null) {
+            return false;
+        }
+        item.setTitle(user.getUsername());
+        item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(@NonNull MenuItem item) {
+                startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), loggedInUserId));
+                return false;
+            }
+        });
+        return true;
     }
 
     private void toastMaker(String message) {

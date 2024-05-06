@@ -7,7 +7,7 @@
     <string name="create_an_account">Sign Up</string>
     <string name="sign_up">Sign Up</string>
     <string name="create_account_button">Create Account</string>
-    <string name="createAccountText">Please Create an Account</string>
+    <string name="createAccountText">Create an Account</string>
     <string name="divetype">Dive Type:</string>
     <string name="enter_a_type_of_dive">Enter a Type of Dive</string>
     <string name="maxdepth">Maximum Depth:</string>
@@ -44,4 +44,7 @@
     <string name="submit">Submit</string>
     <string name="enter_a_new_password">Enter a New Password</string>
     <string name="divelog">DiveLog</string>
+    <string name="previously_logged_dives">Previously Logged Dives</string>
+    <string name="log_a_new_dive">Log a New Dive</string>
+    <string name="dive_instructors">Dive Instructors</string>
 </resources>

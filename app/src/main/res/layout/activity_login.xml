@@ -72,7 +72,7 @@
     <TextView
         android:id="@+id/titleLoginTextView"
         android:layout_width="match_parent"
-        android:layout_height="75dip"
+        android:layout_height="wrap_content"
         android:layout_margin="16dip"
         android:gravity="center"
         android:text="@string/login_welcome"

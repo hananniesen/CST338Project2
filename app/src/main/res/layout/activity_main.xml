@@ -42,63 +42,88 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/icon"
+        android:contentDescription="@string/icon"
+        app:layout_constraintBottom_toTopOf="@id/titleWelcomeTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.225" />
+
+    <TextView
+        android:layout_width="100dip"
+        android:layout_height="25dip"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textColor="@color/dark_blue"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
     <TextView
         android:id="@+id/titleWelcomeTextView"
         android:layout_width="match_parent"
-        android:layout_height="75dip"
+        android:layout_height="wrap_content"
         android:layout_margin="16dip"
         android:gravity="center"
         android:text="Welcome, User"
+        android:textColor="@color/deep_blue"
         android:textSize="42sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:textColor="@color/deep_blue"
-        android:textStyle="bold"
-        />
+        app:layout_constraintVertical_bias="0.215" />
 
     <Button
         android:id="@+id/viewLogsButton"
         android:layout_width="300dp"
         android:layout_height="65dp"
         android:layout_margin="16dp"
+        android:background="@drawable/button_border"
         android:text="@string/view_logs"
+        android:textColor="@color/orange"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleWelcomeTextView"
-        android:background="@drawable/button_border"
-        android:textColor="@color/orange"
-        />
+        app:layout_constraintTop_toBottomOf="@id/titleWelcomeTextView" />
 
     <Button
         android:id="@+id/logDiveButton"
         android:layout_width="300dp"
         android:layout_height="65dp"
         android:layout_margin="16dp"
+        android:background="@drawable/button_border"
         android:text="@string/log_dive"
+        android:textColor="@color/orange"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/viewLogsButton"
-        android:background="@drawable/button_border"
-        android:textColor="@color/orange"
-        />
+        app:layout_constraintTop_toBottomOf="@id/viewLogsButton" />
 
     <Button
         android:id="@+id/settingsButton"
         android:layout_width="300dp"
         android:layout_height="65dp"
         android:layout_margin="16dp"
+        android:background="@drawable/button_fill"
         android:text="@string/settings"
+        android:textColor="@color/light_blue"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/logDiveButton"
         app:layout_constraintVertical_bias="0.85"
-        android:background="@drawable/button_fill"
-        android:textColor="@color/light_blue"
 
         />
 

@@ -62,7 +62,9 @@ public class MainActivity extends AppCompatActivity {
         binding.viewLogsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(MainActivity.this, ViewLogsActivity.class);
+                intent.putExtra("loggedInUserId", user.getId());
+                startActivity(intent);
             }
         });
 
@@ -164,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
         updateSharedPreference();
         getIntent().putExtra(MAIN_ACTIVITY_USER_ID, LOGGED_OUT);
 
-        startActivity(LoginActivity.loginIntentFactory(getApplicationContext()));
+        startActivity(DiverLandingPage.diverLandingPageIntentFactory(getApplicationContext()));
     }
 
     private void updateSharedPreference() {
