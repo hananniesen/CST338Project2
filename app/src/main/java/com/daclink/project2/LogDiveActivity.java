@@ -1,5 +1,6 @@
 package com.daclink.project2;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,15 +13,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.daclink.project2.database.DiveHubRepository;
 import com.daclink.project2.database.entities.DiveLog;
 import com.daclink.project2.database.entities.User;
 import com.daclink.project2.databinding.ActivityLogDiveBinding;
-import com.daclink.project2.viewHolders.DiveLogAdapter;
 import com.daclink.project2.viewHolders.DiveLogViewModel;
 
 public class LogDiveActivity extends AppCompatActivity {
@@ -129,5 +126,9 @@ public class LogDiveActivity extends AppCompatActivity {
 
     private void toastMaker(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    static Intent LogDiveActivityIntentFactory(Context context) {
+        return new Intent(context, AdminSettingsActivity.class);
     }
 }
