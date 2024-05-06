@@ -53,9 +53,12 @@ public class CreateAccountActivity extends AppCompatActivity {
 
         LiveData<User> userObserver = repository.getUserByUserName(username);
 
+        // not enough time for password requirements
+
         userObserver.observe(this, user -> {
             if (user != null) {
-                toastMaker(String.format("%s already exists.", username));
+                userObserver.removeObservers(this);
+                toastMaker(String.format("%s is already taken.", username));
                 binding.userNameCreateEditText.setSelection(0);
             } else {
                 String password = binding.passwordCreateEditText.getText().toString();
@@ -64,14 +67,11 @@ public class CreateAccountActivity extends AppCompatActivity {
                     toastMaker("Passwords do not match");
                     binding.passwordCreateEditText.setSelection(0);
                     binding.repeatPasswordCreateEditText.setSelection(0);
-//                } else if (password doesn't meet requirements) {
-
-                    // And password meets requirements
                 } else if (password.equals(repeatPassword)) {
                     User newUser = new User(username, password);
                     repository.insertUser(newUser);
+                    startActivity(LoginActivity.loginIntentFactory(getApplicationContext()));
                     toastMaker("Account successfully created!");
-                    startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), user.getId()));
                 } else {
                     toastMaker("Invalid passwords");
                     binding.passwordCreateEditText.setSelection(0);

@@ -40,4 +40,7 @@
     <string name="delete_account">Delete Account</string>
     <string name="edit_username">Edit Username</string>
     <string name="edit_password">Edit Password</string>
+    <string name="enter_a_new_username">Enter a New Username</string>
+    <string name="submit">Submit</string>
+    <string name="enter_a_new_password">Enter a New Password</string>
 </resources>

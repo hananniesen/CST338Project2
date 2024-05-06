@@ -1,13 +1,19 @@
 package com.daclink.project2;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,6 +32,7 @@ public class SettingsActivity extends AppCompatActivity {
     private DiveHubRepository repository;
 
     int loggedInUserId;
+    private static final String MAIN_ACTIVITY_USER_ID = "com.daclink.project2.MAIN_ACTIVITY_USER_ID";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +64,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 changeUsername();
+                binding.changeUsernameTextView.setText(String.format("Username: %s", user.getUsername()));
             }
         });
 
@@ -77,25 +85,107 @@ public class SettingsActivity extends AppCompatActivity {
 
 
     private void changeUsername() {
+        showChangeUsernameDialog();
+    }
 
+    private void showChangeUsernameDialog() {
+        final Dialog dialog = new Dialog(SettingsActivity.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.change_username_dialog);
+
+        EditText changeUserEditText = dialog.findViewById(R.id.changeUsernameDialogEditText);
+        Button submitButton = dialog.findViewById(R.id.changeUsernameDialogButton);
+
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                submitNewUserName(changeUserEditText);
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
+    private void submitNewUserName(EditText changeUserEditText) {
+        User currentUser = this.user;
+        String newUsername = changeUserEditText.getText().toString();
+        LiveData<User> userObserver = repository.getUserByUserName(newUsername);
+        userObserver.observe(this, user -> {
+            if (user != null) {
+                if (currentUser.getUsername().equals(newUsername)) {
+                    toastMaker(String.format("Username is already %s", newUsername));
+                } else {
+                    toastMaker(String.format("%s is already taken.", newUsername));
+                }
+            } else {
+                LiveData<User> userObserver2 = repository.getUserByUserId(loggedInUserId);
+                userObserver2.observe(this, newUser -> {
+                    newUser.setUsername(newUsername);
+                    repository.insertUser(newUser);
+                    this.user = newUser;
+                    toastMaker(String.format("Username was successfully changed to %s", newUsername));
+                    userObserver2.removeObservers(this);
+                });
+                userObserver.removeObservers(this);
+            }
+        });
     }
 
     private void changePassword() {
+        showChangePasswordDialog();
+    }
 
+    private void showChangePasswordDialog() {
+        final Dialog dialog = new Dialog(SettingsActivity.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.change_password_dialog);
+
+        EditText changePasswordEditText = dialog.findViewById(R.id.changePasswordDialogEditText);
+        EditText changeRepeatPasswordEditText = dialog.findViewById(R.id.changeRepeatPasswordDialogEditText);
+        Button submitButton = dialog.findViewById(R.id.changePasswordDialogButton);
+
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                submitNewPassword(changePasswordEditText, changeRepeatPasswordEditText);
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
+    private void submitNewPassword(EditText changePasswordEditText, EditText changeRepeatPasswordEditText) {
+        LiveData<User> userObserver = repository.getUserByUserId(loggedInUserId);
+
+        userObserver.observe(this, user -> {
+            String password = changePasswordEditText.getText().toString();
+            String repeatPassword = changeRepeatPasswordEditText.getText().toString();
+            if (password.equals(repeatPassword)) {
+                user.setPassword(password);
+                repository.insertUser(user);
+                toastMaker("Password successfully changed!");
+                userObserver.removeObservers(this);
+            } else {
+                toastMaker("Passwords don't match");
+            }
+        });
     }
 
     private void deleteAccount() {
-        String username = user.getUsername();
-
-        LiveData<User> userObserver = repository.getUserByUserName(username);
+        LiveData<User> userObserver = repository.getUserByUserId(loggedInUserId);
         userObserver.observe(this, user -> {
+            if (user != null) {
                 String password = binding.passwordDeleteAccountEditText.getText().toString();
                 String repeatPassword = binding.repeatPasswordDeleteAccountEditText.getText().toString();
                 if (password.equals(user.getPassword()) && password.equals(repeatPassword)) {
                     repository.deleteUser(user);
-                    toastMaker("Account successfully deleted.");
+                    loggedInUserId = -1;
+                    updateSharedPreference();
+                    getIntent().putExtra(MAIN_ACTIVITY_USER_ID, -1);
                     startActivity(LoginActivity.loginIntentFactory(getApplicationContext()));
-                } else if (! password.equals(repeatPassword)) {
+                } else if (!password.equals(repeatPassword)) {
                     toastMaker("Passwords do not match");
                     binding.passwordDeleteAccountEditText.setSelection(0);
                     binding.repeatPasswordDeleteAccountEditText.setSelection(0);
@@ -104,7 +194,18 @@ public class SettingsActivity extends AppCompatActivity {
                     binding.passwordDeleteAccountEditText.setSelection(0);
                     binding.repeatPasswordDeleteAccountEditText.setSelection(0);
                 }
+            } else {
+                toastMaker("Account has been successfully deleted");
+            }
         });
+    }
+
+    private void updateSharedPreference() {
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.preference_file_key),
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor sharedPrefEditor = sharedPreferences.edit();
+        sharedPrefEditor.putInt(getString(R.string.preference_userId_key), loggedInUserId);
+        sharedPrefEditor.apply();
     }
 
     @Override

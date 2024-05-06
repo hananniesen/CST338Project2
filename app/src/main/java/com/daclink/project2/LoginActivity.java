@@ -60,11 +60,11 @@ public class LoginActivity extends AppCompatActivity {
                 if (password.equals(user.getPassword())) {
                     startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), user.getId()));
                 } else {
-                    toastMaker("Invalid password");
+                    toastMaker("Invalid username/password");
                     binding.passwordLoginEditText.setSelection(0);
                 }
             } else {
-                toastMaker("Invalid username.");
+                toastMaker("User doesn't exist.");
                 binding.userNameLoginEditText.setSelection(0);
             }
         });
