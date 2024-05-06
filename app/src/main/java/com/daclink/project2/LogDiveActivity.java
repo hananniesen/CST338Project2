@@ -81,5 +81,5 @@ public class LogDiveActivity extends AppCompatActivity {
 //        }
 //
 //        mAdditionalComments = binding.addiCommInputEditText.getText().toString();
-//    }
+    }
 }

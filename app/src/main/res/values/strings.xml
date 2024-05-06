@@ -36,4 +36,8 @@
     <string name="welcome_to_the_dive_hub">Welcome to the Dive Hub</string>
     <string name="get_started">Get Started</string>
     <string name="username_user">Username: User</string>
+    <string name="passwordInSettings">Password: ••••••••••</string>
+    <string name="delete_account">Delete Account</string>
+    <string name="edit_username">Edit Username</string>
+    <string name="edit_password">Edit Password</string>
 </resources>
