@@ -46,7 +46,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <EditText
-        android:id="@+id/adminUsernameGivePowerAccountEditText"
+        android:id="@+id/adminUsernameGivePermsAccountEditText"
         android:layout_width="250dp"
         android:layout_height="45dp"
         android:layout_margin="10dp"
@@ -133,7 +133,7 @@
         app:layout_constraintTop_toBottomOf="@+id/adminUsernameDeleteAccountEditText" />
 
     <Button
-        android:id="@+id/deleteAccountButton"
+        android:id="@+id/adminDeleteAccountButton"
         android:layout_width="300dp"
         android:layout_height="65dp"
         android:layout_margin="10dp"
