@@ -32,4 +32,8 @@
     <string name="icon">ICON</string>
     <string name="instructors">Instructors</string>
     <string name="deleting_your_account">Deleting Your Account</string>
+    <string name="sign_in">Sign In</string>
+    <string name="welcome_to_the_dive_hub">Welcome to the Dive Hub</string>
+    <string name="get_started">Get Started</string>
+    <string name="username_user">Username: User</string>
 </resources>

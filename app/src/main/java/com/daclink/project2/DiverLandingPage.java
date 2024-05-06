@@ -4,17 +4,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.daclink.project2.database.DiveLogRepository;
-import com.daclink.project2.databinding.ActivityDiverLandingPageBinding;
+import com.daclink.project2.database.DiveHubRepository;
 import com.daclink.project2.database.entities.User;
+import com.daclink.project2.databinding.ActivityDiverLandingPageBinding;
 
 public class DiverLandingPage extends AppCompatActivity {
 
     private ActivityDiverLandingPageBinding binding;
-    private DiveLogRepository repository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,24 +22,17 @@ public class DiverLandingPage extends AppCompatActivity {
         binding = ActivityDiverLandingPageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.viewLogsButton.setOnClickListener(new View.OnClickListener() {
+        binding.landingLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(LoginActivity.loginIntentFactory(getApplicationContext()));
             }
         });
 
-        binding.logDiveButton.setOnClickListener(new View.OnClickListener() {
+        binding.landingSignUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-            }
-        });
-
-        binding.settingsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
+                startActivity(CreateAccountActivity.createAccountIntentFactory(getApplicationContext()));
             }
         });
     }

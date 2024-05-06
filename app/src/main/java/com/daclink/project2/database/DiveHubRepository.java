@@ -14,29 +14,29 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
-public class DiveLogRepository {
+public class DiveHubRepository {
     private final DiveLogDAO diveLogDAO;
     private final UserDAO userDAO;
     private ArrayList<DiveLog> allLogs;
 
-    private static DiveLogRepository repository;
+    private static DiveHubRepository repository;
 
-    private DiveLogRepository(Application application) {
+    private DiveHubRepository(Application application) {
         DiveLogDatabase db = DiveLogDatabase.getDatabase(application);
         this.diveLogDAO = db.diveLogDAO();
         this.userDAO = db.userDAO();
         this.allLogs = (ArrayList<DiveLog>) this.diveLogDAO.getAllRecords();
     }
 
-    public static DiveLogRepository getRepository(Application application) {
+    public static DiveHubRepository getRepository(Application application) {
         if (repository != null) {
             return repository;
         }
-        Future<DiveLogRepository> future = DiveLogDatabase.databaseWriteExecutor.submit(
-                new Callable<DiveLogRepository>() {
+        Future<DiveHubRepository> future = DiveLogDatabase.databaseWriteExecutor.submit(
+                new Callable<DiveHubRepository>() {
                     @Override
-                    public DiveLogRepository call() throws Exception {
-                        return new DiveLogRepository(application);
+                    public DiveHubRepository call() throws Exception {
+                        return new DiveHubRepository(application);
                     }
                 }
         );
@@ -78,6 +78,13 @@ public class DiveLogRepository {
         DiveLogDatabase.databaseWriteExecutor.execute(()->
         {
             userDAO.insert(user);
+        });
+    }
+
+    public void deleteUser(User user) {
+        DiveLogDatabase.databaseWriteExecutor.execute(()->
+        {
+            userDAO.delete(user);
         });
     }
 

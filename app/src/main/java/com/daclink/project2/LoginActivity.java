@@ -9,7 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 
-import com.daclink.project2.database.DiveLogRepository;
+import com.daclink.project2.database.DiveHubRepository;
 import com.daclink.project2.database.entities.User;
 import com.daclink.project2.databinding.ActivityLoginBinding;
 
@@ -18,7 +18,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private ActivityLoginBinding binding;
 
-    private DiveLogRepository repository;
+    private DiveHubRepository repository;
     private User user;
 
     @Override
@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        repository = DiveLogRepository.getRepository(getApplication());
+        repository = DiveHubRepository.getRepository(getApplication());
 
         binding.loginButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,6 +1,5 @@
 package com.daclink.project2;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,9 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 
-import com.daclink.project2.database.DiveLogDatabase;
-import com.daclink.project2.database.DiveLogRepository;
-import com.daclink.project2.database.UserDAO;
+import com.daclink.project2.database.DiveHubRepository;
 import com.daclink.project2.database.entities.User;
 import com.daclink.project2.databinding.ActivityCreateAccountBinding;
 
@@ -20,7 +17,7 @@ public class CreateAccountActivity extends AppCompatActivity {
 
     private ActivityCreateAccountBinding binding;
 
-    private DiveLogRepository repository;
+    private DiveHubRepository repository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +25,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         binding = ActivityCreateAccountBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        repository = DiveLogRepository.getRepository(getApplication());
+        repository = DiveHubRepository.getRepository(getApplication());
 
         binding.signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,11 +52,6 @@ public class CreateAccountActivity extends AppCompatActivity {
         }
 
         LiveData<User> userObserver = repository.getUserByUserName(username);
-
-
-        // TODO: Finish Create Account parameters (Still need to check for password meeting requirements)
-        // It works but instead of going directly into the landing page after signing up, you have to log in
-
 
         userObserver.observe(this, user -> {
             if (user != null) {

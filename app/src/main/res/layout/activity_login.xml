@@ -13,48 +13,48 @@
         android:layout_width="400dp"
         android:layout_height="200dp"
         android:background="@drawable/wave_back"
+        android:contentDescription="@string/bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        android:contentDescription="@string/bg" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="417dp"
         android:layout_height="149dp"
         android:background="@drawable/wave_mid"
+        android:contentDescription="@string/bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        android:contentDescription="@string/bg" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:layout_width="412dp"
         android:layout_height="103dp"
         android:background="@drawable/wave_for"
+        android:contentDescription="@string/bg"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        android:contentDescription="@string/bg" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="@drawable/icon"
+        android:contentDescription="@string/icon"
         app:layout_constraintBottom_toTopOf="@+id/titleLoginTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.225"
-        android:contentDescription="@string/icon" />
+        app:layout_constraintVertical_bias="0.225" />
 
     <TextView
         android:layout_width="100dip"
@@ -62,8 +62,8 @@
         android:layout_marginTop="4dp"
         android:gravity="center"
         android:text="@string/app_name"
-        android:textSize="20sp"
         android:textColor="@color/dark_blue"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -127,7 +127,7 @@
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/passwordLoginEditText"
         app:layout_constraintVertical_bias="0.055" />

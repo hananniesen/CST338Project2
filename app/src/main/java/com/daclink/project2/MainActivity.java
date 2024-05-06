@@ -11,17 +11,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import com.daclink.project2.database.DiveLogRepository;
-import com.daclink.project2.database.entities.DiveLog;
+import com.daclink.project2.database.DiveHubRepository;
 import com.daclink.project2.database.entities.User;
 import com.daclink.project2.databinding.ActivityMainBinding;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,14 +26,9 @@ public class MainActivity extends AppCompatActivity {
     static final String SAVED_INSTANCE_STATE_USERID_KEY = "com.daclink.project2.SAVED_INSTANCE_STATE_USERID_KEY";
     private static final int LOGGED_OUT = -1;
     private ActivityMainBinding binding;
-    private DiveLogRepository repository;
+    private DiveHubRepository repository;
 
     public static final String TAG = "DAC_DIVELOG";
-
-    String mDiveType = "";
-    String mTimeSpent = "";
-    double mMaxDepth = 0.0;
-    String mAdditionalComments = "";
 
     private int loggedInUserId = 1;
     private User user;
@@ -48,32 +39,46 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        repository = DiveLogRepository.getRepository(getApplication());
+        repository = DiveHubRepository.getRepository(getApplication());
         loginUser(savedInstanceState);
 
-        invalidateOptionsMenu();
-
-        if (loggedInUserId == -1) {
-            Intent intent = LoginActivity.loginIntentFactory(getApplicationContext());
+        // User is not logged in at this point, go to login screen
+        if (loggedInUserId == LOGGED_OUT) {
+            Intent intent = DiverLandingPage.diverLandingPageIntentFactory(getApplicationContext());
             startActivity(intent);
         }
 
         updateSharedPreference();
-// for going into diver landing page (Isn't completed as of yet)
-//        if (loggedInUserId == 1) {
-//            Intent intent = DiverLandingPage.diverLandingPageIntentFactory(getApplicationContext());
-//            startActivity(intent);
-//        }
 
-        binding.logDisplayTextView.setMovementMethod(new ScrollingMovementMethod());
-        updateDisplay();
+        LiveData<User> userObserver = repository.getUserByUserId(loggedInUserId);
+        userObserver.observe(this, user -> {
+            this.user = user;
+            if (this.user != null) {
+                binding.titleWelcomeTextView.setText(String.format("Welcome, %s", user.getUsername()));
+                invalidateOptionsMenu();
+            }
+        });
 
-        binding.logButton.setOnClickListener(new View.OnClickListener() {
+        binding.viewLogsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getInformationFromDisplay();
-                insertDiveLogRecord();
-                updateDisplay();
+
+            }
+        });
+
+        binding.logDiveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                startActivity(LogDiveActivity.logDiveActivityIntentFactory(getApplicationContext()));
+            }
+        });
+
+        binding.settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                intent.putExtra("loggedInUserId", user.getId());
+                startActivity(intent);
             }
         });
     }
@@ -94,13 +99,6 @@ public class MainActivity extends AppCompatActivity {
         if (loggedInUserId == LOGGED_OUT) {
             return;
         }
-        LiveData<User> userObserver = repository.getUserByUserId(loggedInUserId);
-        userObserver.observe(this, user -> {
-            this.user = user;
-            if (this.user != null) {
-                invalidateOptionsMenu();
-            }
-        });
     }
 
     @Override
@@ -121,11 +119,10 @@ public class MainActivity extends AppCompatActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem item = menu.findItem(R.id.logoutMenuItem);
         item.setVisible(true);
-//        if (user == null) {
-//            return false;
-//        }
-//      item.setTitle(user.getUsername());
-        item.setTitle("USER");
+        if (user == null) {
+            return false;
+        }
+        item.setTitle(user.getUsername());
         item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(@NonNull MenuItem item) {
@@ -180,43 +177,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(context, MainActivity.class);
         intent.putExtra(MAIN_ACTIVITY_USER_ID, userId);
         return intent;
-    }
-
-    private void insertDiveLogRecord() {
-        if (mDiveType.isEmpty()) {
-            return;
-        }
-        if (mTimeSpent.isEmpty()) {
-            return;
-        }
-        DiveLog log = new DiveLog(mDiveType, mTimeSpent, mMaxDepth, mAdditionalComments, loggedInUserId);
-        repository.insertDiveLog(log);
-    }
-
-    private void updateDisplay() {
-        ArrayList<DiveLog> allLogs = repository.getAllLogsByUserId(loggedInUserId);
-        if (allLogs.isEmpty()) {
-            binding.logDisplayTextView.setText(R.string.nothing_to_show);
-        }
-        StringBuilder sb = new StringBuilder();
-        for (DiveLog log : allLogs) {
-            sb.append(log);
-        }
-        binding.logDisplayTextView.setText(sb.toString());
-    }
-
-    private void getInformationFromDisplay() {
-        mDiveType = binding.diveTypeInputEditText.getText().toString();
-
-        mTimeSpent = binding.timeInputEditText.getText().toString();
-
-        try {
-            mMaxDepth = Double.parseDouble(binding.maxDepthInputEditText.getText().toString());
-        } catch (NumberFormatException e) {
-            Log.d(TAG, "Error reading value from max depth edit text.");
-        }
-
-        mAdditionalComments = binding.addiCommInputEditText.getText().toString();
     }
 
 
